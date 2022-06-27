@@ -6,5 +6,12 @@ services:
     ports:
       - 8080:80
     volumes:
-      - nginx:/etc/nginx/conf.d
+      - ./nginx:/etc/nginx/conf.d
+      - ./img:/usr/share/nginx/img
     working_dir: /var/log/nginx
+
+  server1: 
+    image: mohsinkhalid/expressjs
+    
+  server2:
+    image: mohsinkhalid/expressjs
