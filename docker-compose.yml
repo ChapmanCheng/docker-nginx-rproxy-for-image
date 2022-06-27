@@ -18,6 +18,3 @@ services:
 
   img_proxy:
     build: ./img_proxy
-    ports:
-      - 3000:3000
-
