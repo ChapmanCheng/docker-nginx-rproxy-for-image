@@ -18,3 +18,16 @@ services:
 
   img_proxy:
     build: ./img_proxy
+
+  encore: 
+    image: node:16-alpine
+    user: node
+    working_dir: /home/node
+    expose:
+      - 8080
+    volumes:
+      - ./encore:/home/node
+    command: > 
+      sh -c "rm -rf node_modules
+      && npm i 
+      && npm run dev-server"
