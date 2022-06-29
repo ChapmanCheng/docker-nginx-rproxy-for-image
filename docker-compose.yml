@@ -1,0 +1,38 @@
+version: '3.7'
+
+services:
+  proxy: 
+    image: nginx:alpine
+    ports:
+      - 8080:80
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./img:/usr/share/nginx/img
+    working_dir: /var/log/nginx
+
+  server1: 
+    image: mohsinkhalid/expressjs
+    
+  server2:
+    image: mohsinkhalid/expressjs
+
+  img_proxy:
+    build: ./img_proxy
+
+  encore: 
+    image: node:16-alpine
+    user: node
+    working_dir: /home/node
+    ports:
+      - 8080
+    volumes:
+      - ./encore:/home/node
+    command: > 
+      sh -c "rm -rf node_modules
+      && npm i 
+      && npx encore dev-server --host 0.0.0.0"
+
+networks:
+  default:
+    name: foobar-net
+    driver: bridge
