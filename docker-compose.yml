@@ -31,3 +31,8 @@ services:
       sh -c "rm -rf node_modules
       && npm i 
       && npx encore dev-server --host 0.0.0.0"
+
+networks:
+  default:
+    name: foobar-net
+    driver: bridge
